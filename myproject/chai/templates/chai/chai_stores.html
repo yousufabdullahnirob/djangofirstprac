@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai Stores</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+    <h1 class="bg-amber-600 text-white p-4 text-center text-xl font-semibold">
+        Select Chai Variety
+    </h1>
+
+    <form method="POST" class="max-w-md mx-auto bg-white p-6 rounded shadow mt-6">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700">
+            Search
+        </button>
+    </form>
+
+    {% if stores %}
+        <h2 class="text-lg font-bold text-center mt-8 text-gray-700">Available Stores</h2>
+        <ul class="list-disc list-inside mt-4 text-center">
+            {% for store in stores %}
+                <li>{{ store.location }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</body>
+</html>
+
+
